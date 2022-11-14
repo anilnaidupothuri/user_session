@@ -7,9 +7,10 @@ class SessionsController < ApplicationController
   end
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-
+byebug
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+
       flash[:success] = "succefully logged in "
       redirect_to root_path
     else
