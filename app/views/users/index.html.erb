@@ -1,4 +1,50 @@
-<% @users.each do |user| %>
-<%= user.name %>
-<%= user.email %><br></br>
-<% end %>
+<style>
+  .header{
+
+    width:300px;
+    height:130px;
+
+  }
+  .card1{
+      height:45px;
+      padding-top:3px;
+    background-color:#6698FF;
+    margin-bottom:13px;
+      margin-top:10px;
+  }
+
+  </style>
+
+<h1 class="text-center mt-4"></h1>
+ <h3> All Users,<%= current_user.name %> </h3>
+<div class="container">
+  <% @users.each do |user| %>
+ <div class="header">
+    <div class="col-8 center mt-4">
+
+        <div class="card1">
+          <h4><%= user.name%></h4>
+        </div>
+
+        <%= link_to "View profile", user, class: "btn btn-outline-success" %>
+        <% if logged_in? %>
+          <% if user == current_user %>
+            <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to "Delete user", user_path(user), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure you want to delete the user account and all associated articles?"} %>
+          <% end %>
+        <% end %>
+
+        <div class="footer1">
+          <small>Joined
+            <%= time_ago_in_words(user.created_at) %>
+            ago</small>
+        </div>
+        </div>
+
+    </div>
+  <br>
+
+  <% end %>
+</div>

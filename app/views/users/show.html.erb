@@ -1,1 +1,49 @@
-<%= @user.name %>
+
+<style>
+  .header {
+
+    width: 300px;
+    height: 130px;
+
+  }
+  .card1 {
+    height: 45px;
+    padding-top: 3px;
+    background-color: #6698FF;
+    margin-bottom: 13px;
+    margin-top: 10px;
+  }
+</style>
+
+<h1 class="text-center mt-4"></h1>
+
+<div class="container">
+  <% @user_microposts.each do |post| %>
+    <div class="header">
+      <div class="col-8 center mt-4">
+
+        <div class="card1">
+          <h4><%= post.content %></h4>
+          <%= post.picture %>
+        </div>
+
+        <%= link_to "View profile", '#', class: "btn btn-outline-success" %>
+
+        <%= link_to "Edit profile", '#', class: "btn btn-outline-info" %>
+
+        <%= link_to "Delete post", '#', class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure you want to delete the user account and all associated articles?"} %>
+
+        <div class="footer1">
+          <small>Joined
+            <%= time_ago_in_words(post.created_at) %>
+            ago</small>
+        </div>
+      </div>
+
+    </div>
+    <br>
+
+  <% end %>
+  Total Posts :
+  <%= @user_microposts.count %>
+</div>

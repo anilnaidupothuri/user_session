@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
+
+
   before_action :user_id, only: [:show, :edit]
   def index
+
     @users = User.all
+
   end
 
-  def show; end
+  def show
+
+    @user_microposts =@user.microposts
+    
+  end
 
   def new
     @user = User.new
