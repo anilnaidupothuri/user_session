@@ -1,4 +1,7 @@
 <% @users.each do |user| %>
 <%= user.name %>
-<%= user.email %><br></br>
+<%= user.email %><br>
+	Followers: <%= user.following.count %>
+	Following: <%= user.followers.count %>
+</br>
 <% end %>
