@@ -10,34 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_15_045653) do
-
-  create_table "microposts", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "picture"
-    t.index ["user_id"], name: "index_microposts_on_user_id"
-  end
-
-  create_table "relationshihps", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
-  end
+ActiveRecord::Schema.define(version: 2022_11_12_055706) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.string "password_digest"
+	
     t.string "password_confirmation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "admin"
-    t.string "activation_digest"
-    t.boolean "activated", default: false
-    t.datetime "activated_at"
   end
 
-  add_foreign_key "microposts", "users"
 end
